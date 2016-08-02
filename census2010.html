@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=7,IE=9" />
+		<title>Census 2010</title>
+		<link rel="icon" type="image/png" href="images/COfavicon2.png">
+		<link rel="stylesheet" href="https://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/dojo/dijit/themes/claro/claro.css">
+		<link rel="stylesheet" href="https://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/esri/css/esri.css">
+		<link rel="stylesheet" href="css/layout.css">
+		<link rel="stylesheet" href="css/jquery-ui-1.10.2.custom.min.css" />
+
+		<link rel="stylesheet" href="https://dola.colorado.gov/gis-php/files/html/css/jquery.selectBox.css" />
+		<link rel="stylesheet" href="https://dola.colorado.gov/gis-php/files/projects/acsmaps/acs_style.css" />
+
+		<script src="js/jquery-1.9.1.js"></script>
+		<script src="js/jquery-ui.js"></script>
+		<script src="js/d3.v3.min.js"></script>
+
+		<script src="js/jquery.selectBox.js"></script>
+
+		<script>
+			var dojoConfig = {
+				parseOnLoad : true
+			};
+		</script>
+		<script src="js/arcgisapi34.js"></script>
+
+		<script src="js/c2010.js"></script>
+
+
+	</head>
+
+	<!--[if lt IE 9]>
+	<div id="divalert">Browser Out of Date!<br />Some Functionality May Not Work Correctly. <br />Please upgrade to <a href="http://www.microsoft.com/en-us/download/internet-explorer-9-details.aspx" target="_blank">Internet Explorer 9</a> or later.<br />Or Try <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a> or <a href="http://www.mozilla.org/en-US/firefox/new/" target="_blank">Mozilla Firefox</a></div>
+	<![endif]-->
+
+	<body class="claro">
+
+		<div id="search"></div>
+
+		<div id="advancedbutton" onclick="closeadvancedbox();" style="display:none;">
+			Advanced...
+		</div>
+
+		<div id="mainWindow" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="design:'headline'" style="width:100%; height:100%;">
+			<div id="header" class="shadow roundedCorners" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:'top'">
+				<div id="title"></div>
+				<div id="subtitle"></div>
+			</div>
+			<div id="map" class="roundedCorners shadow" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:'center'" ></div>
+
+			<div id="rightPane" class="roundedCorners shadow" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region:'right'"  style="width:321px">
+
+				<div id="newelements" style="display:none;">
+
+					<label for="radiodiv" style="font-size:75%">Choose a Geography Type</label>
+					<br>
+					<select id="radiodiv">
+						<option value="Block Group">Block Group</option>
+						<option value="Tract">Tract</option>
+						<option value="County">County</option>
+						<option value="County Sub.">County Sub.</option>
+						<option value="Place">Place</option>
+						<option value="School District">School District</option>
+						<option value="CBSA">CBSA</option>
+						<option value="CSA">CSA</option>
+						<option value="State">State</option>
+					</select>
+
+					<br />
+
+					<label for="datadiv" style="font-size:75%">Choose a Data Category</label>
+					<br/>
+					<select id="datadiv">
+						<option value="pop">Population &amp; Race</option>
+						<option value="age">Age</option>
+						<option value="hld">Household</option>
+						<option value="hou">Housing</option>
+						<option value="gqu">Group Quarters</option>
+					</select>
+					<br />
+					<br />
+
+					<div id="richcontent" style="width:100%;" style="display:none;"></div>
+				</div>
+
+				<br />
+				<div align="center" >
+					<p style="font-size:75%; margin-top:-2px;" >
+						<i> <a href="http://www.colorado.gov/cs/Satellite/DOLA-Main/CBON/1251595720248" target="_blank">Shapefiles</a> - <a href="http://dola.colorado.gov/gis-php/files/html/SimpleNames2010Metadata.html" target="_blank">Metadata</a> </i>
+					</p>
+				</div>
+
+			</div>
+		</div>
+
+		<div id="abovebox" onclick="aboveboxclick();" style="display:none;">
+			Legend&nbsp;&nbsp; <img id="arrowdir" src="https://dola.colorado.gov/gis-php/files/gis-images/expand_arrow2.png" style="vertical-align:middle;" />
+		</div>
+		<div id="thematicbox" class="roundedCorners shadow "  style="display:none;">
+			<p id="titleleg" style="margin-bottom:-20px; font-weight:bold; padding: 10px;"></p>
+			<div id="legendDiv"></div>
+
+		</div>
+
+		<div id="advancedbox" style="display: none;">
+
+			<img id="closebtn" src="https://dola.colorado.gov/gis-php/files/projects/acsmaps/closebtn.png" onclick="closeadvancedbox();"/>
+
+			<table>
+				<tr>
+					<td style="font-size: 10pt;"><label for="basem">Basemap</label></td><td>
+					<select id="basem" style="width:180px">
+						<option value="TerrainMap" selected>Topographic (ESRI)</option>
+						<option value="Satellite">Imagery (ESRI)</option>
+						<option value="MapBoxStreets">Street (Mapbox)</option>
+						<option value="MapBoxTerrain">Terrain (Mapbox)</option>
+						<option value="StamenTerrain">Terrain (Stamen)</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td style="font-size: 10pt;"><label for="outlinelayer">Outline Layer</label></td><td>
+					<select id="outlinelayer" style="width:180px">
+						<option value="None" selected>None</option>
+						<option value="Block Group">Block Group</option>
+						<option value="Tract">Tract</option>
+						<option value="County">County</option>
+						<option value="County Subdivision">County Subdivision</option>
+						<option value="Place">Place</option>
+						<option value="School District">School District</option>
+						<option value="Zipcode">ZCTA (Zipcode)</option>
+						<option value="CBSA">CBSA</option>
+						<option value="CSA">CSA</option>
+						<option value="State">State</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td style="font-size: 10pt;"><label for="exttype">Print Format</label></td><td>
+					<select id="exttype" style="width:180px">
+						<option value="JPG" selected>JPG</option>
+						<option value="PNG">PNG</option>
+					</select></td>
+				</tr>
+			</table>
+
+			<span style="font-size: 60%">
+				<p>
+					<b>Credits:</b> Created with <a href="http://www.arcgis.com/features/" target="_blank">ArcGIS Online</a> and the <a href="http://developers.arcgis.com/en/javascript/" target="_blank">ESRI Javascript API</a>. User Interface by <a href="http://jquery.com/" target="_blank">JQuery</a>, <a href="http://jqueryui.com/" target="_blank">JQueryUI</a>, <a href="http://github.com/marcj/jquery-selectBox" target="_blank">JQuery Selectbox Plugin</a>.  Charts created by <a href="http://d3js.org/" target="_blank">D3.js</a>.  Colorschemes courtesy of <a href="http://colorbrewer2.org/" target="_blank">Colorbrewer</a>.  Print Services created with <a href="http://phantomjs.org/" target="_blank">Phantom.js</a>.
+				</p></span>
+
+		</div>
+<!--
+		<div id="databtns" align="center">
+			<input type="submit" id="printareport"  onclick="javascript:Clickheretoprint()" value="Print Report" style="display:none;"/>
+			<input type="submit" id="printacsv"  onclick="javascript:PrintCSV()" value="Get CSV Data" style="display:none;"/>
+		</div>
+
+		<div id="printbtns">
+			<input type="submit" value="Print Map" id="printamap" onClick="javascript:Clickhereformap('printamap')" style="display:none;" />
+		</div>
+-->
+		<div>
+			<div id="hold1"></div>
+			<div id="hold2"></div>
+			<div id="hold3"></div>
+			<div id="hold4"></div>
+			<div id="hold5"></div>
+			<div id="hold6"></div>
+			<div id="hold7"></div>
+			<div id="hold8"></div>
+			<div id="hold9"></div>
+			<div id="hold10"></div>
+		</div>
+
+		<div id='link' title="Get a Link for this Map View"><img height="22" width="22" onclick="getmaplink();" src='images/star.png' />
+		</div>
+
+
+		<div id="contentdiv" style="position: absolute; top: 200px; left: 200px; background: lightblue; padding: 5px; display:none; z-index: 4000;"><img id="closelink" style="float: right; " src="images/closebtn.png" onclick="$('#contentdiv').hide();"/>
+			<br>
+			<textarea id="insidecontent" rows="6" cols="65"></textarea>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,281 @@
+
+#header{
+border: 1px solid #ADADAD;
+}
+		
+#map{
+border: 1px solid #ADADAD;
+}
+
+#rightPane{
+border: 1px solid #ADADAD;
+}
+
+            a img {
+                border : none;
+            }
+
+#git{
+position: absolute;
+z-index: 3000;
+top: 62px;
+right: 25px;
+}
+
+#link{
+position: absolute;
+z-index: 3000;
+top: 60px;
+right: 60px;
+cursor: pointer;
+}
+
+a:link{color: #4A6883;}
+a:active{color: #4A6883;}
+a:visited{color: #4A6883;}
+a:hover{color: #3333FF;}
+		
+		#title{
+color: rgb(68,121,170);
+font-family: Copse, Georgia, serif;
+font-size: 32px;
+font-style: normal;
+font-variant: normal;
+font-weight: normal;
+letter-spacing: normal;
+outline-color: rgb(143, 2, 6);
+outline-style: none;
+outline-width: 0px;
+text-decoration: none;
+text-shadow: rgb(252, 249, 238) 0px 1px 0px, rgba(0, 0, 0, 0.14902) 0px 2px 0px;
+}
+			#subtitle{
+color: rgb(32,60,85);
+font-family: Copse, Georgia, serif;
+outline-color: rgb(143, 2, 6);
+outline-style: none;
+outline-width: 0px;
+text-decoration: none;
+text-shadow: rgb(252, 249, 238) 0px 1px 0px, rgba(0, 0, 0, 0.14902) 0px 2px 0px;
+}	
+		
+		
+	.map .logo-med{
+	bottom:5px;
+	right:10px;
+	width: 46px;
+	height: 22px;
+      } 
+		
+		#advancedbox{
+		position:absolute;
+		top:200px;
+		left:220px;
+		width: 360px;
+		border:2px solid rgb(68,121,170);
+        background-color: #F7F9FE;
+		padding: 10px;
+        z-index: 4000;
+		}
+		
+		#advancedbutton{
+		position: absolute;
+        z-index: 3000;
+        top: 60px;
+        right: 370px;
+		line-height: 16px;	
+		}
+		
+		#closebtn{
+		position: absolute;
+		top:10px;
+		right:10px;
+		}
+		
+		#printamap{
+		position:absolute;
+		bottom: 55px;
+		left:15px;	
+		line-height: 16px;
+		}
+		
+
+		
+		#printareport{
+		position:absolute;
+		bottom: 85px;
+		left:15px;		
+		line-height: 16px;
+		}
+		
+		#printacsv{
+		position:absolute;
+		bottom: 115px;
+		left:15px;	
+		line-height: 16px;		
+		}
+		
+		
+		#richcontent{
+		top: 125px;
+		overflow: auto;
+		background-color: #F7F9FE;
+		border:1px solid #6994BB;
+		}
+		
+		select {
+		width: 250px;
+		}
+		
+		.selectBox-dropdown{
+		font-weight:normal;
+		font-family: Copse, Georgia, serif;		
+		}
+		
+		
+#arrowdir{
+position: relative;
+top: -5px;
+}
+		
+			.invis{
+
+			}
+			
+			.showmargin{
+			display: none;
+			}
+		
+		#divalert{
+			position: absolute;
+			top: 12px;
+			left:145px;
+			z-index:999;
+			background: white;
+			color:red;
+		}
+		
+
+
+.ui-button { width: 130px;
+line-height: 20px;
+		font-size: 13px !important; 
+		font-family: Copse, Georgia, serif;
+		border-color: rgb(68,121,170);
+		}â€‹
+		
+
+		
+            a img {
+                border : none;
+            }
+            #legendDiv {
+                margin-left:15px;
+            }
+            #abovebox {
+                position: absolute;
+                z-index: 3005;
+                top: 113px;
+                right: 371px;
+                text-align: center;
+                cursor: pointer;
+				font-family: Copse, Georgia, serif;
+				line-height: 16px;	
+            }
+		
+            #thematicbox {
+                position: absolute;
+                z-index: 3005;
+                top: 143px;
+                right: 372px;
+                width: 220px;
+                border:1px solid rgb(68,121,170);
+                background-color: #F7F9FE;
+                overflow: hidden;
+                text-align: center;
+            }
+            #search {
+                position: absolute;
+                z-index: 3000;
+                top: 56px;
+                right: 111px;
+            }
+            td {
+                font-family: sans-serif;
+                font-size: 8pt;
+                height: 2px;
+                vertical-align:center;
+				padding-left:3px;
+				padding-right:3px;
+            }
+			
+			#advancedbox td{
+                font-family: Copse, Georgia, serif;
+                font-size: 11pt;
+                vertical-align:center;
+				padding-left:3px;
+				padding-right:3px;			
+			}
+            .t_btn {
+                display: inline-block;
+                padding: 2px 4px;
+                background: rgb(221,238,250);
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+                color: #3D6D99;
+                cursor: pointer;
+				width: 100px;
+				border:1px solid rgb(68,121,170);
+				text-align: center;
+				overflow: hidden;
+            }
+			
+            .n_btn {
+                display: inline-block;
+                padding: 2px 4px;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+				border:1px solid rgb(150,150,150);
+				color: rgb(100,100,100);
+				width: 100px;
+				cursor: default;
+				text-align: center;
+            }
+			
+
+			
+            body {
+                text-rendering: optimizeLegibility;
+				font-family: Copse, Georgia, serif;
+            }
+			
+		
+		.ui-state-default{
+		font-weight: normal;
+		}
+		
+			.t_btn:hover {
+			 font-weight: bold;
+			background-color: #f0f5f9;
+			 border: 1px solid #305577;
+			 }
+			 
+
+			
+			.selectbtn{
+			background-color: rgb(68,121,170);
+			color: rgb(255,255,255);
+			}
+			
+			.selectbtn:hover{
+			background-color: #f0f5f9;
+			color: orange;
+			}
+			
+					.ui-button:hover{ 
+		background-color: #f0f5f9;
+		border: 1px solid #305577;
+		}â€‹
+		
